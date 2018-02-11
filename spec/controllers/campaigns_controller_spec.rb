@@ -59,8 +59,8 @@ RSpec.describe CampaignsController, type: :controller do
 
     it 'create campaign with right attributes' do
       expect(Campaign.last.user).to eq(@current_user)
-      expect(Campaign.last.title).to eq(@campaign_attribures[:title])
-      expect(Campaign.last.description).to eq(@campaign_attributes[:description])
+      expect(Campaign.last.title).to eq('Nova Campanha')
+      expect(Campaign.last.description).to eq('Descreva sua campanha...')
       expect(Campaign.last.status).to eq('pending')
     end
 
@@ -97,7 +97,7 @@ RSpec.describe CampaignsController, type: :controller do
   describe 'PUT #update' do
     before(:each) do
       @new_campaign_attributes = attributes_for(:campaign)
-      request.env['HTTP_ACCEPT'] = 'application_json'
+      request.env['HTTP_ACCEPT'] = 'application/json'
     end
 
     context 'user is the campaign owner' do
@@ -128,7 +128,7 @@ RSpec.describe CampaignsController, type: :controller do
 
   describe 'POST #raffle' do
     before(:each) do
-      request.env['HTTP_ACCEPT'] = 'application_json'
+      request.env['HTTP_ACCEPT'] = 'application/json'
     end
 
     context 'user is the campaign owner' do
@@ -163,6 +163,7 @@ RSpec.describe CampaignsController, type: :controller do
     context "user isn't the campaign owner" do
       before(:each) do
         @campaign = create(:campaign)
+        post :raffle, params: { id: @campaign.id }
       end
 
       it 'returns http forbidden' do

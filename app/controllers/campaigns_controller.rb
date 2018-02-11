@@ -12,11 +12,11 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    @campaign = Campaign.new(campaign_params)
+    @campaign = Campaign.new(user: current_user, title: 'Nova Campanha', description: 'Descreva sua campanha...')
 
     respond_to do |format|
       if @campaign.save
-        format.hmtl { redirect_to "/campaigns/#{@campaign.id}" }
+        format.html { redirect_to "/campaigns/#{@campaign.id}" }
       else
         format.html { redirect_to main_app.root_url, notice: @campaign.errors }
       end
@@ -48,7 +48,7 @@ class CampaignsController < ApplicationController
       elsif @campaign.members.count < 3
         format.json { render json: 'A campanha precisa de pelo menos 3 pessoas', status: :unprocessable_entity }
       else
-        CampaignRaffeJob.perform_later @campaign
+        CampaignRaffleJob.perform_later @campaign
         format.json { render json: true }
       end
     end
