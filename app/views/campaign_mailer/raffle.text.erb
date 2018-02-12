@@ -1,3 +1,13 @@
-Campaign#raffle
+Nosso Amigo Secreto
 
-<%= @greeting %>, find me in app/views/campaign_mailer/raffle.text.erb
+<%= @campaign.title %>
+<%= (@campaign.event_date)? "#{@campaign.event_date.strftime("%d/%m/%y")} | " : '' %><%= @campaign.location %>
+
+
+<%= @campaign.description %>
+
+
+Olá <%= @member.name %>, o <%= @campaign.user.name %> criou uma campanha de amigo secreto no site Nosso Amigo Secreto e incluiu você. Logo abaixo você pode saber com quem saiu.
+
+
+Seu amigo secreto é: <%= @friend.name %>
