@@ -18,3 +18,6 @@
 
 # Ignore ENV Prod
 .env-prod
+
+# Ignore assets precompiled
+public/assets/*

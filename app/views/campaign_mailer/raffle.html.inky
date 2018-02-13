@@ -5,7 +5,7 @@
     <columns large="2">
     </columns>
     <columns large="1">
-      <img src='http://<%= "#{ActionMailer::Base.default_url_options[:host]}/assets/logo.png" %>' alt="">
+      <img src='<%= "#{ActionMailer::Base.default_url_options[:host]}/assets/logo.png" %>' alt="">
     </columns>
     <columns large="8">
       <h4>Nosso Amigo Secreto</h4>
@@ -69,6 +69,6 @@
     </row>
   </wrapper>
 
-  <img src='http://<%= "#{ActionMailer::Base.default_url_options[:host]}/members/#{@member.token}/opened" %>' width="1" height="1">
+  <img src='<%= "#{ActionMailer::Base.default_url_options[:host]}/members/#{@member.token}/opened" %>' width="1" height="1">
 
 </container>

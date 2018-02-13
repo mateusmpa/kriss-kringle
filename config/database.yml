@@ -83,5 +83,5 @@ test:
 production:
   <<: *default
   database: kriss-kringle_production
-  username: kriss-kringle
-  password: <%= ENV['KRISS-KRINGLE_DATABASE_PASSWORD'] %>
+  # username: kriss-kringle
+  # password: <%= ENV['KRISS-KRINGLE_DATABASE_PASSWORD'] %>

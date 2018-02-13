@@ -32,11 +32,21 @@ services:
       - 'redis'
     build: .
     command: bash start
-    ports: '3000:3000'
+    ports:
+      - '3000:3000'
     volumes_from:
       - box
     env_file:
       - '.env-prod'
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    links:
+      - app
+    ports:
+      - '80:80'
 
   box:
     image: busybox
@@ -46,4 +56,4 @@ services:
 volumes:
   redis:
   postgres:
-  box:  
+  box:
